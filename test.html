@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Do List Dashboard — Property-Based Tests</title>
+  <style>
+    body   { font-family: system-ui, sans-serif; margin: 2rem; background: #f9fafb; color: #111; }
+    h1     { font-size: 1.5rem; margin-bottom: 1rem; }
+    h2     { font-size: 1.05rem; margin: 1.6rem 0 0.4rem; color: #374151; }
+    .suite { border: 1px solid #d1d5db; border-radius: 6px; padding: 1rem; margin-bottom: 1rem; background: #fff; }
+    .pass  { color: #16a34a; font-weight: 600; }
+    .fail  { color: #dc2626; font-weight: 600; }
+    .result  { margin: 0.3rem 0; font-size: 0.88rem; white-space: pre-wrap; font-family: monospace; }
+    #summary { margin-top: 1.5rem; font-size: 1rem; font-weight: 700; }
+    .pending { color: #6b7280; }
+  </style>
+</head>
+<body>
+  <h1>Property-Based Tests — To Do List Dashboard</h1>
+  <p>Open this file in a browser. Results appear below.</p>
+  <div id="output"></div>
+  <div id="summary" class="pending">Running…</div>
+
+  <!-- All test logic runs as an ES module so we can import fast-check from esm.sh -->
+  <script type="module">
+    // fast-check loaded via esm.sh CDN — no build step or server required.
+    // Uses fast-check v3 (last CommonJS-compatible release with a stable API).
+    import * as fc from 'https://esm.sh/fast-check@3';
+
+    /* ===========================================================
+       Minimal in-browser test runner
+       =========================================================== */
+    const results = [];
+    const outputEl  = document.getElementById('output');
+    const summaryEl = document.getElementById('summary');
+
+    function suite(name) {
+      const h = document.createElement('h2');
+      h.textContent = name;
+      outputEl.appendChild(h);
+      const div = document.createElement('div');
+      div.className = 'suite';
+      outputEl.appendChild(div);
+      return div;
+    }
+
+    function logResult(container, label, passed, detail) {
+      const p = document.createElement('p');
+      p.className = 'result ' + (passed ? 'pass' : 'fail');
+      p.textContent = (passed ? '✓ ' : '✗ ') + label + (detail ? '\n  ' + detail : '');
+      container.appendChild(p);
+      results.push(passed);
+    }
+
+    function test(container, label, fn) {
+      try {
+        fn();
+        logResult(container, label, true, '');
+      } catch (err) {
+        logResult(container, label, false, String(err));
+      }
+    }
+
+    function printSummary() {
+      const passed = results.filter(Boolean).length;
+      const total  = results.length;
+      summaryEl.textContent = passed + ' / ' + total + ' tests passed';
+      summaryEl.className   = (passed === total) ? 'pass' : 'fail';
+    }
+
+    /* ===========================================================
+       In-memory localStorage stub
+       Replaces window.localStorage for each test so tests are
+       isolated, fast, and produce no real storage side-effects.
+       =========================================================== */
+    function makeLocalStorageStub() {
+      let store = {};
+      return {
+        getItem:    (k) => Object.prototype.hasOwnProperty.call(store, k) ? store[k] : null,
+        setItem:    (k, v) => { store[k] = String(v); },
+        removeItem: (k) => { delete store[k]; },
+        clear:      () => { store = {}; },
+      };
+    }
+
+    /* ===========================================================
+       Inline storage module (mirrors js/app.js storage namespace)
+       Accepts an injected localStorage-compatible object so tests
+       never touch the real window.localStorage.
+       =========================================================== */
+    function makeStorage(lsStub) {
+      const KEYS = {
+        TASKS:    'todo_dashboard_tasks',
+        LINKS:    'todo_dashboard_links',
+        SETTINGS: 'todo_dashboard_settings',
+      };
+
+      function read(key) {
+        try {
+          const raw = lsStub.getItem(key);
+          if (raw === null) return null;
+          return JSON.parse(raw);
+        } catch {
+          return null;
+        }
+      }
+
+      function write(key, value) {
+        try {
+          lsStub.setItem(key, JSON.stringify(value));
+          return true;
+        } catch {
+          return false;
+        }
+      }
+
+      return { KEYS, read, write };
+    }
+
+    /* ===========================================================
+       Inline generateId (same logic as js/app.js)
+       =========================================================== */
+    function generateId() {
+      if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+        return crypto.randomUUID();
+      }
+      return Date.now().toString() + Math.random().toString(36).slice(2);
+    }
+
+    /* ===========================================================
+       Inline links module (pure logic extracted from js/app.js).
+       The render() method is a no-op; tests inspect the links
+       array via the exported getLinks() method.
+       =========================================================== */
+    function makeLinks(storageObj) {
+      let _links = [];
+
+      function _createLink(label, url) {
+        return { id: generateId(), label, url };
+      }
+
+      // no-op render — tests work with in-memory state directly
+      function render() {}
+
+      function init(linkArray) {
+        _links = Array.isArray(linkArray) ? [...linkArray] : [];
+      }
+
+      /** Returns a defensive copy of the current links array. */
+      function getLinks() {
+        return [..._links];
+      }
+
+      /**
+       * addLink(label, url)
+       * Validation mirrors js/app.js links.addLink exactly:
+       *   - total count must be < 50              (Requirement 6.1)
+       *   - label must be 1–50 non-empty chars    (Requirement 6.2)
+       *   - url must match /^https?:\/\/.+/       (Requirement 6.2)
+       * On any validation failure: returns without mutating _links.
+       */
+      function addLink(label, url) {
+        const trimmedLabel = String(label).trim();
+        const trimmedUrl   = String(url).trim();
+
+        // count cap
+        if (_links.length >= 50) return;
+
+        // label validation
+        if (trimmedLabel.length === 0 || trimmedLabel.length > 50) return;
+
+        // url validation: must start with http:// or https:// + at least 1 char
+        const urlValid = /^https?:\/\/.+/.test(trimmedUrl);
+        if (!urlValid) return;
+
+        const newLink = _createLink(trimmedLabel, trimmedUrl);
+        _links.push(newLink);
+
+        const success = storageObj.write(storageObj.KEYS.LINKS, _links);
+        if (!success) {
+          _links.pop();
+        }
+      }
+
+      function deleteLink(id) {
+        const idx = _links.findIndex((l) => l.id === id);
+        if (idx === -1) return;
+        const removed = _links.splice(idx, 1)[0];
+        const success = storageObj.write(storageObj.KEYS.LINKS, _links);
+        if (!success) {
+          _links.splice(idx, 0, removed);
+        }
+      }
+
+      return { init, addLink, deleteLink, getLinks };
+    }
+
+    /* ===========================================================
+       Helper: fresh, isolated links module instance per test
+       =========================================================== */
+    function freshLinksModule() {
+      const stub    = makeLocalStorageStub();
+      const storage = makeStorage(stub);
+      const linksM  = makeLinks(storage);
+      linksM.init([]);
+      return linksM;
+    }
+
+    /* ===========================================================
+       PROPERTY 9 — Quick link URL validation
+       -------------------------------------------------------
+       // Feature: todo-list-dashboard, Property 9: Quick link URL validation
+       //
+       // For any string that does NOT begin with http:// or https://
+       // followed by at least one character, addLink MUST reject the URL.
+       // The link list SHALL remain unchanged (length stays 0) and no
+       // write to Quick_Link_Store SHALL occur.
+       //
+       // Validates: Requirements 6.2
+       =========================================================== */
+
+    const s9 = suite('Property 9 — Quick link URL validation  (Validates: Requirements 6.2)');
+
+    // Smoke test: confirm fast-check loaded correctly
+    test(s9, 'fast-check is available (fc.check is a function)', () => {
+      if (typeof fc === 'undefined' || typeof fc.check !== 'function') {
+        throw new Error('fast-check (fc) not loaded — check the CDN import');
+      }
+    });
+
+    // ── Core property test ──────────────────────────────────────
+    test(s9, 'Property 9: addLink rejects any URL that does not start with http(s)://<char>', () => {
+      // Generator: any string that does NOT match the valid-URL pattern.
+      // fc.string() produces arbitrary Unicode strings; we filter to keep only
+      // those that are invalid URLs so the property is correctly constrained.
+      const invalidUrl = fc.string().filter(
+        (s) => !/^https?:\/\/.+/.test(s.trim())
+      );
+
+      const result = fc.check(
+        fc.property(invalidUrl, (url) => {
+          const linksM = freshLinksModule();
+          linksM.addLink('test', url);        // valid label, invalid URL
+          return linksM.getLinks().length === 0;  // no link should have been added
+        }),
+        { numRuns: 100 }
+      );
+
+      if (result.failed) {
+        throw new Error(
+          'Property 9 FAILED.\n' +
+          'Counterexample: url = ' + JSON.stringify(result.counterexample) + '\n' +
+          'Seed: ' + result.seed
+        );
+      }
+    });
+
+    // ── Explicit examples (regression / documentation) ──────────
+    test(s9, 'Explicit: bare domains are rejected', () => {
+      const bare = ['example.com', 'www.google.com', 'github.com/user/repo'];
+      for (const url of bare) {
+        const linksM = freshLinksModule();
+        linksM.addLink('test', url);
+        if (linksM.getLinks().length !== 0) {
+          throw new Error('Expected rejection for: ' + JSON.stringify(url));
+        }
+      }
+    });
+
+    test(s9, 'Explicit: wrong protocols are rejected', () => {
+      const wrong = ['ftp://example.com', '//example.com', 'javascript:alert(1)', 'mailto:a@b.com'];
+      for (const url of wrong) {
+        const linksM = freshLinksModule();
+        linksM.addLink('test', url);
+        if (linksM.getLinks().length !== 0) {
+          throw new Error('Expected rejection for: ' + JSON.stringify(url));
+        }
+      }
+    });
+
+    test(s9, 'Explicit: partial http(s):// strings without a trailing character are rejected', () => {
+      // The spec requires at least one character after the protocol+slashes.
+      const partial = ['http://', 'https://', 'http:/', 'https:/', 'http:', 'https:', 'http', 'https'];
+      for (const url of partial) {
+        const linksM = freshLinksModule();
+        linksM.addLink('test', url);
+        if (linksM.getLinks().length !== 0) {
+          throw new Error('Expected rejection for: ' + JSON.stringify(url));
+        }
+      }
+    });
+
+    test(s9, 'Explicit: empty and whitespace-only URLs are rejected', () => {
+      for (const url of ['', '   ', '\t', '\n']) {
+        const linksM = freshLinksModule();
+        linksM.addLink('test', url);
+        if (linksM.getLinks().length !== 0) {
+          throw new Error('Expected rejection for: ' + JSON.stringify(url));
+        }
+      }
+    });
+
+    // ── Contrast test: valid URLs must be accepted ───────────────
+    test(s9, 'Contrast: valid http:// and https:// URLs are accepted', () => {
+      const valid = [
+        'http://a',
+        'https://a',
+        'http://example.com',
+        'https://example.com',
+        'https://example.com/path?q=1#hash',
+      ];
+      for (const url of valid) {
+        const linksM = freshLinksModule();
+        linksM.addLink('test', url);
+        if (linksM.getLinks().length !== 1) {
+          throw new Error('Expected acceptance for: ' + JSON.stringify(url));
+        }
+      }
+    });
+
+    /* ===========================================================
+       Print final summary
+       =========================================================== */
+    printSummary();
+  </script>
+</body>
+</html>

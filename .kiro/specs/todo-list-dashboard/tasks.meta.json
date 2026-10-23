@@ -1,0 +1,393 @@
+{
+  "pbtResults": {
+    "9.3 Write property test for settings persistence round-trip": {
+      "status": "passed",
+      "lastRunTimestamp": 1792765136144
+    },
+    "8.3 Write property test for quick link count cap": {
+      "status": "passed",
+      "lastRunTimestamp": 1792765579615
+    }
+  },
+  "executionHistory": {
+    "1. Set up project file structure and HTML skeleton": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761441106
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761446593
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761531775
+      }
+    ],
+    "2.1 Write the `storage` namespace object in `js/app.js`": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761441401
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761535322
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761712460
+      }
+    ],
+    "3.1 Write CSS custom properties and theme rules in `css/style.css`": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761441642
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761538504
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761716228
+      }
+    ],
+    "3.2 Implement the `theme` namespace object in `js/app.js`": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761441772
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761721809
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761788774
+      }
+    ],
+    "4.1 Write the `greeting` namespace object in `js/app.js`": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761441956
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761817824
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762061944
+      }
+    ],
+    "5.1 Write the `timer` namespace object in `js/app.js`": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761442139
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762071284
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762214931
+      }
+    ],
+    "6. Checkpoint — verify structure and theme before data modules": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761442279
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762231515
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762532741
+      }
+    ],
+    "7.1 Write the `tasks` namespace object in `js/app.js`": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761442381
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762235465
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762536844
+      }
+    ],
+    "8.1 Write the `links` namespace object in `js/app.js`": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761442507
+      },
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762548274
+      },
+      {
+        "executionId": "47677a45-d8f6-4304-991f-6d7007300d80",
+        "chatSessionId": "sess_ac31b136-91be-4b6c-8178-1b08196d335e",
+        "timestamp": 1792764046602
+      },
+      {
+        "executionId": "47677a45-d8f6-4304-991f-6d7007300d80",
+        "chatSessionId": "sess_ac31b136-91be-4b6c-8178-1b08196d335e",
+        "timestamp": 1792764178328
+      }
+    ],
+    "9.1 Write the `init()` function in `js/app.js` and bind it to `DOMContentLoaded`": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761442611
+      },
+      {
+        "executionId": "ab4955b9-677e-49b8-90af-9ad29d4cdbc0",
+        "chatSessionId": "sess_3853a1b7-97dd-4c70-88e9-9bd2cc4bec5c",
+        "timestamp": 1792764257660
+      },
+      {
+        "executionId": "ab4955b9-677e-49b8-90af-9ad29d4cdbc0",
+        "chatSessionId": "sess_3853a1b7-97dd-4c70-88e9-9bd2cc4bec5c",
+        "timestamp": 1792764263928
+      },
+      {
+        "executionId": "ec6aca5d-59fb-43b3-bdf3-b7d1b71ba703",
+        "chatSessionId": "sess_498cd756-a093-41d0-95fb-40c41c54b573",
+        "timestamp": 1792764466464
+      },
+      {
+        "executionId": "ec6aca5d-59fb-43b3-bdf3-b7d1b71ba703",
+        "chatSessionId": "sess_498cd756-a093-41d0-95fb-40c41c54b573",
+        "timestamp": 1792764524377
+      }
+    ],
+    "10. Final checkpoint — full integration verification": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761442741
+      },
+      {
+        "executionId": "ab4955b9-677e-49b8-90af-9ad29d4cdbc0",
+        "chatSessionId": "sess_3853a1b7-97dd-4c70-88e9-9bd2cc4bec5c",
+        "timestamp": 1792764257806
+      },
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764610631
+      },
+      {
+        "executionId": "1ec3ec8d-8230-4d34-8f8c-90ba4bd34148",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792766209829
+      },
+      {
+        "executionId": "1ec3ec8d-8230-4d34-8f8c-90ba4bd34148",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792766554656
+      }
+    ],
+    "2. Implement the Storage module": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761712608
+      }
+    ],
+    "3. Implement CSS custom properties and theme system": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761788919
+      }
+    ],
+    "3.3 Write property test for theme toggle involution": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761810374
+      }
+    ],
+    "2.2 Write property test for localStorage serialization round-trip": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792761810746
+      }
+    ],
+    "4. Implement the Greeting module": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762062071
+      }
+    ],
+    "4.2 Write property test for salutation mapping": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762066624
+      }
+    ],
+    "4.3 Write property test for whitespace-only name rejection": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762067053
+      }
+    ],
+    "5. Implement the Pomodoro Timer module": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762215265
+      }
+    ],
+    "5.2 Write unit tests for timer FSM edge cases": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762219309
+      }
+    ],
+    "7. Implement the Task module": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762537113
+      }
+    ],
+    "7.2 Write property test for task addition round-trip": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762542291
+      }
+    ],
+    "7.3 Write property test for whitespace-only and empty task title rejection": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762542927
+      }
+    ],
+    "7.4 Write property test for task completion toggle involution": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762543310
+      }
+    ],
+    "7.5 Write property test for task edit identity preservation": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762543861
+      }
+    ],
+    "7.6 Write property test for task deletion count": [
+      {
+        "executionId": "ffcbec2c-1c3d-4ef6-8d65-666fc8f7a3e6",
+        "chatSessionId": "sess_c31c3188-cbd9-4792-b77d-4f8b73334cca",
+        "timestamp": 1792762544279
+      }
+    ],
+    "8. Implement the Quick Links module": [
+      {
+        "executionId": "47677a45-d8f6-4304-991f-6d7007300d80",
+        "chatSessionId": "sess_ac31b136-91be-4b6c-8178-1b08196d335e",
+        "timestamp": 1792764178931
+      }
+    ],
+    "9. Implement `init()` bootstrap and wire all modules together": [
+      {
+        "executionId": "ec6aca5d-59fb-43b3-bdf3-b7d1b71ba703",
+        "chatSessionId": "sess_498cd756-a093-41d0-95fb-40c41c54b573",
+        "timestamp": 1792764524696
+      }
+    ],
+    "8.2 Write property test for quick link URL validation": [
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764623338
+      },
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764658097
+      }
+    ],
+    "8.3 Write property test for quick link count cap": [
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764627629
+      },
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764661641
+      }
+    ],
+    "9.2 Write integration tests in `test.html`": [
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764631624
+      },
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764665714
+      }
+    ],
+    "9.3 Write property test for settings persistence round-trip": [
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764634793
+      },
+      {
+        "executionId": "384aa73e-1b6d-4c31-8622-c92c47aac88a",
+        "chatSessionId": "sess_81cc177b-0ebe-4e81-ae33-58697f493e45",
+        "timestamp": 1792764669482
+      }
+    ]
+  }
+}
